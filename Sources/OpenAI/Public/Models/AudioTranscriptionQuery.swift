@@ -34,7 +34,10 @@ public enum ResponseFormat: String, Codable, Equatable, CaseIterable {
     /// https://platform.openai.com/docs/guides/speech-to-text/prompting
     public let language: String?
 
-    public init(file: Data, fileType: Self.FileType, model: Model, prompt: String? = nil, temperature: Double? = nil, language: String? = nil, responseFormat: Self.ResponseFormat? = nil) {
+    https://platform.openai.com/docs/api-reference/audio/createTranscription#audio-createtranscription-timestamp_granularities
+    public let timestampGranularities: [String]?
+
+    public init(file: Data, fileType: Self.FileType, model: Model, prompt: String? = nil, temperature: Double? = nil, language: String? = nil, responseFormat: Self.ResponseFormat? = nil, timestampGranularities: [String]? = nil) {
         self.file = file
         self.fileType = fileType
         self.model = model
@@ -42,6 +45,7 @@ public enum ResponseFormat: String, Codable, Equatable, CaseIterable {
         self.temperature = temperature
         self.language = language
         self.responseFormat = responseFormat
+        self.timestampGranularities = timestampGranularities
     }
 
     public enum FileType: String, Codable, Equatable, CaseIterable {
@@ -92,7 +96,8 @@ extension AudioTranscriptionQuery: MultipartFormDataBodyEncodable {
             .string(paramName: "prompt", value: prompt),
             .string(paramName: "temperature", value: temperature),
             .string(paramName: "language", value: language),
-            .string(paramName: "response_format", value: responseFormat)
+            .string(paramName: "response_format", value: responseFormat),
+            .string(paramName: "timestamp_granularities[]", value: timestampGranularities?.joined(separator: ",")
         ])
         return bodyBuilder.build()
     }
