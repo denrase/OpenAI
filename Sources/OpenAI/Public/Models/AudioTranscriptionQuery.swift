@@ -34,7 +34,7 @@ public enum ResponseFormat: String, Codable, Equatable, CaseIterable {
     /// https://platform.openai.com/docs/guides/speech-to-text/prompting
     public let language: String?
 
-    https://platform.openai.com/docs/api-reference/audio/createTranscription#audio-createtranscription-timestamp_granularities
+    /// https://platform.openai.com/docs/api-reference/audio/createTranscription#audio-createtranscription-timestamp_granularities
     public let timestampGranularities: [String]?
 
     public init(file: Data, fileType: Self.FileType, model: Model, prompt: String? = nil, temperature: Double? = nil, language: String? = nil, responseFormat: Self.ResponseFormat? = nil, timestampGranularities: [String]? = nil) {
