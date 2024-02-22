@@ -20,6 +20,7 @@ extension AudioTranscriptionResult {
     public struct Segment: Codable, Equatable {
         public let id: Int
         public let seek: TimeInterval
+        public let start: TimeInterval
         public let end: TimeInterval
         public let text: String
         public let tokens: [Int]
