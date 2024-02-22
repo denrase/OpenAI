@@ -97,7 +97,7 @@ extension AudioTranscriptionQuery: MultipartFormDataBodyEncodable {
             .string(paramName: "temperature", value: temperature),
             .string(paramName: "language", value: language),
             .string(paramName: "response_format", value: responseFormat),
-            .string(paramName: "timestamp_granularities[]", value: timestampGranularities?.joined(separator: ",")
+            .string(paramName: "timestamp_granularities[]", value: timestampGranularities?.joined(separator: ","))
         ])
         return bodyBuilder.build()
     }
